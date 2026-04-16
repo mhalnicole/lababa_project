@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Index</title>
+</head>
+<body>
+
+<h1>Transaction List</h1>
+
+<a href="/transaction/addNewTransaction/">Add New Transaction</a>
+
+<ul>
+    {% for t in transactions %}
+        <li>
+            {{ t.order }} | {{ t.rider_name }} | {{ t.status }} | {{ t.payment_status }}
+        </li>
+    {% empty %}
+        <li>No transactions yet.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
