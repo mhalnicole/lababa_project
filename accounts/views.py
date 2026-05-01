@@ -1,19 +1,40 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.views import View
 
-def login_page(request):
-    error = ""
 
-    if request.method == "POST":
+class LoginView(View):
+    template_name = 'accounts/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('/')  # go to index page
+        if username == "admin" and password == "1234":
+            request.session['username'] = username
+            return redirect('home')
         else:
-            error = "Invalid username or password"
+            return render(request, self.template_name, {'error': 'Invalid username or password'})
 
-    return render(request, 'accounts/login.html', {'error': error})
+class HomeView(View):
+    template_name = 'accounts/home.html'
+
+    def get(self, request):
+        if not request.session.get('username'):
+            return redirect('login')
+        return render(request, self.template_name)
+
+class EditProfileView(View):
+    template_name = 'accounts/edit_profile.html'
+
+    def get(self, request):
+        if not request.session.get('username'):
+            return redirect('login')
+        return render(request, self.template_name)
+
+class LogoutView(View):
+    def get(self, request):
+        request.session.flush()
+        return redirect('login')
