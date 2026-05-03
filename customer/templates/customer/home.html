@@ -1,0 +1,13 @@
+<h1>Home Page</h1>
+
+<ul>
+    <li><a href="/customer/addNewCustomer/">Add New Record</a></li>
+    <li><a href="/customer/edit-profile/">Edit Profile</a></li>
+
+    <li>
+        <form method="post" action="/accounts/logout/">
+            {% csrf_token %}
+            <button type="submit">Log Off</button>
+        </form>
+    </li>
+</ul>
