@@ -1,22 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LABABA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0a0e1a;
+            color: #e0e6f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image:
+                radial-gradient(ellipse at 30% 20%, rgba(30, 80, 180, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(10, 40, 120, 0.2) 0%, transparent 60%);
+            }
+
+            .brand {
+                font-size: 32px;
+                font-weight: 700;
+                letter-spacing: 6px;
+                color: #ffffff;
+                margin-bottom: 6px;
+                }
+
+                .brand span { color: #4a9eff; }
+
+                .brand-sub {
+                    font-size: 11px;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    color: #3a5a8a;
+                    margin-bottom: 32px;
+                    text-align: center;
+                }
+
+                .login-box {
+                    background: linear-gradient(145deg, #0d1b3e, #0a1530);
+                    border: 1px solid rgba(74, 158, 255, 0.15);
+                    border-radius: 14px;
+                    padding: 36px 40px;
+                    width: 100%;
+                    max-width: 380px;
+                    box-shadow: 0 20px 60px rgba(0, 10, 40, 0.6);
+                }
+
+                .login-box h2 {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #c8d8f0;
+                    margin-bottom: 24px;
+                    letter-spacing: 1px;
+                }
+
+                .form-group { margin-bottom: 18px; }
+
+                label {
+                    display: block;
+                    font-size: 11px;
+                    font-weight: 600;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: #4a9eff;
+                    margin-bottom: 8px;
+                }
+
+                input[type="text"],
+                input[type="password"] {
+                    width: 100%;
+                    padding: 12px 16px;
+                    background: #060d1e;
+                    border: 1px solid rgba(74, 158, 255, 0.2);
+                    border-radius: 8px;
+                    color: #e0e6f0;
+                    font-family: "Segoe UI", Arial, sans-serif;
+                    font-size: 14px;
+                    outline: none;
+                    transition: border-color 0.2s, box-shadow 0.2s;
+                }
+
+                input:focus {
+                    border-color: #4a9eff;
+                    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+                }
+
+                .error {
+                    background: rgba(220, 50, 50, 0.1);
+                    border: 1px solid rgba(220, 50, 50, 0.3);
+                    border-radius: 6px;
+                    padding: 10px 14px;
+                    color: #ff6b6b;
+                    font-size: 13px;
+                    margin-bottom: 18px;
+                }
+
+                button {
+                width: 100%;
+                padding: 13px;
+                background: #1a5fd4;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-family: "Segoe UI", Arial, sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: all 0.2s;
+                margin-top: 6px;
+            }
+
+            button:hover {
+                background: #4a9eff;
+                transform: translateY(-1px);
+            }
+
+            .back-link {
+                display: block;
+                text-align: center;
+                margin-top: 18px;
+                font-size: 12px;
+                color: #3a5a8a;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .back-link:hover { color: #4a9eff; }
+    </style>
 </head>
 <body>
 
-<h2>Login</h2>
+<div class="brand">LA<span>BABA</span></div>
+<div class="brand-sub">Laundry Pickup and Delivery System</div>
 
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username"><br><br>
-    <input type="password" name="password" placeholder="Password"><br><br>
-    <button type="submit">Login</button>
-</form>
+<div class="login-box">
+    <h2>Sign In</h2>
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
 
+     <form method="POST">
+         {% csrf_token %}
+         <div class="form-group">
+             <label for="username">Username</label>
+             <input type="text" id="username" name="username" placeholder="Enter username" required>
+         </div>
+
+         <div class="form-group">
+             <label for="password">Password</label>
+             <input type="password" id="password" name="password" placeholder="Enter password" required>
+         </div>
+
+         <button type="submit">Login</button>
+     </form>
+</div>
+
+<a href="/" class="back-link">← Back to Main Navigation</a>
 </body>
 </html>

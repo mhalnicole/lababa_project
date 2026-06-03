@@ -2,14 +2,87 @@
 <html>
 <head>
     <title>Edit Profile</title>
+
+    <style>
+        body{
+            background:#0a0e1a;
+            color:white;
+            font-family:"Segoe UI",sans-serif;
+            margin:0;
+            padding:40px;
+        }
+
+        .container{
+            max-width:600px;
+            margin:auto;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:20px;
+            letter-spacing:2px;
+        }
+
+        form{
+            background:#0d1b3e;
+            padding:20px;
+            border-radius:10px;
+        }
+
+        input, select, textarea{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            border-radius:5px;
+            border:none;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:#1a5fd4;
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#4a9eff;
+        }
+
+        a{
+            color:white;
+            display:block;
+            text-align:center;
+            margin-top:15px;
+            text-decoration:none;
+        }
+
+        a:hover{
+            color:#4a9eff;
+        }
+    </style>
+
 </head>
+
 <body>
 
-<h2>Edit Profile</h2>
+<div class="container">
 
-<p>This is a placeholder page.</p>
+    <h1>EDIT PROFILE</h1>
 
-<a href="/transaction/">Back</a>
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form }}
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="/transaction/">Back to Dashboard</a>
+
+</div>
 
 </body>
 </html>
