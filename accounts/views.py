@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
 
-
 class LoginView(View):
     template_name = 'accounts/login.html'
 
@@ -24,7 +23,9 @@ class HomeView(View):
     def get(self, request):
         if not request.session.get('username'):
             return redirect('login')
-        return render(request, self.template_name)
+        response = render(request, self.template_name)
+        response['Cache-Control'] = 'no-store'
+        return response
 
 class EditProfileView(View):
     template_name = 'accounts/edit_profile.html'

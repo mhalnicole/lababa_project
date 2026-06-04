@@ -13,7 +13,6 @@ class LaundryShop(models.Model):
     def __str__(self):
         return self.shop_name
 
-
 class LaundryType(models.Model):
     type_id = models.CharField(max_length=20, primary_key=True)
     type_name = models.CharField(max_length=100)
@@ -21,7 +20,6 @@ class LaundryType(models.Model):
 
     def __str__(self):
         return self.type_name
-
 
 class Service(models.Model):
     service_id = models.CharField(max_length=20, primary_key=True)

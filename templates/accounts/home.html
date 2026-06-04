@@ -2,15 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - LABABA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0a0e1a;
+            color: #e0e6f0;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(30, 80, 180, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(10, 40, 120, 0.2) 0%, transparent 60%);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d1b3e, #112255);
+            border-bottom: 1px solid rgba(100, 160, 255, 0.15);
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: 4px; color: #ffffff; }
+        .logo span { color: #4a9eff; }
+
+        .logout-btn {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #3a5a8a;
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover { color: #4a9eff; border-color: #4a9eff; }
+
+        .container { width: 90%; max-width: 900px; margin: 50px auto; }
+
+        .welcome { margin-bottom: 36px; }
+        .welcome h1 { font-size: 30px; font-weight: 700; color: #c8d8f0; margin-bottom: 6px; }
+        .welcome p { font-size: 14px; color: #3a5a8a; }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4a9eff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after { content: ''; flex: 1; height: 1px; background: rgba(74, 158, 255, 0.2); }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+        .card {
+            background: linear-gradient(145deg, #0d1b3e, #0a1530);
+            border: 1px solid rgba(74, 158, 255, 0.12);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4a9eff, #1a5fd4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover { transform: translateY(-4px); border-color: rgba(74, 158, 255, 0.35); box-shadow: 0 8px 24px rgba(10, 40, 120, 0.4); }
+        .card:hover::before { opacity: 1; }
+
+        .card-icon { font-size: 28px; margin-bottom: 14px; }
+        .card h3 { font-size: 16px; font-weight: 600; color: #c8d8f0; margin-bottom: 8px; }
+        .card p { font-size: 13px; color: #3a5a8a; line-height: 1.6; margin-bottom: 18px; }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 9px 20px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: #1a5fd4; color: white; }
+        .btn-primary:hover { background: #4a9eff; transform: translateY(-1px); }
+
+        .btn-danger { background: rgba(180, 40, 40, 0.2); color: #ff6b6b; border: 1px solid rgba(180, 40, 40, 0.3); }
+        .btn-danger:hover { background: rgba(180, 40, 40, 0.35); }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Home Page</h1>
 
-  <ul>
-    <li><a href="/edit-profile/">Edit Profile</a></li>
-    <li><a href="/shop/addNewShop">Add New Record</a></li>
-    <li><a href="/logout/">Log Off</a></li>
-  </ul>
+<header>
+    <div class="logo">LA<span>BABA</span></div>
+    <a href="/accounts/logout/" class="logout-btn">Log Off</a>
+</header>
+
+<div class="container">
+    <div class="welcome">
+        <h1>Welcome Back</h1>
+        <p>What would you like to do today?</p>
+    </div>
+
+    <div class="section-title">Quick Actions</div>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">✏️</div>
+            <h3>Edit Profile</h3>
+            <p>Update your account information and personal details.</p>
+            <a href="/accounts/edit-profile/" class="btn btn-primary">Edit Profile</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">➕</div>
+            <h3>Add New Record</h3>
+            <p>Add a new laundry shop record to the system.</p>
+            <a href="/shop/" class="btn btn-primary">Add New Record</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🚪</div>
+            <h3>Log Off</h3>
+            <p>Sign out of your account and end your current session.</p>
+            <a href="/accounts/logout/" class="btn btn-danger">Log Off</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

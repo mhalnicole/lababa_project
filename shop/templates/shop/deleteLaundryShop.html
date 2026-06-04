@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile - LABABA</title>
+    <title>Delete Laundry Shop - LABABA</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -33,7 +32,6 @@
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 1px;
             color: #3a5a8a;
             border: 1px solid rgba(74, 158, 255, 0.2);
             padding: 7px 16px;
@@ -45,13 +43,13 @@
 
         .container { width: 90%; max-width: 500px; margin: 50px auto; }
 
-        .page-tag { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #4a9eff; margin-bottom: 10px; }
+        .page-tag { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #ff6b6b; margin-bottom: 10px; }
         h2 { font-size: 28px; font-weight: 700; color: #c8d8f0; margin-bottom: 6px; }
         .sub { font-size: 13px; color: #3a5a8a; margin-bottom: 30px; }
 
         .card {
             background: linear-gradient(145deg, #0d1b3e, #0a1530);
-            border: 1px solid rgba(74, 158, 255, 0.12);
+            border: 1px solid rgba(180, 40, 40, 0.2);
             border-radius: 12px;
             padding: 30px;
             position: relative;
@@ -63,42 +61,75 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #4a9eff, #1a5fd4);
+            background: linear-gradient(90deg, #ff6b6b, #b42828);
         }
 
-        .card p { font-size: 14px; color: #5a7aa5; line-height: 1.7; margin-bottom: 24px; }
+        .card p { font-size: 14px; color: #5a7aa5; line-height: 1.7; margin-bottom: 6px; }
+        .card p span { color: #c8d8f0; font-weight: 600; }
+
+        .warning {
+            background: rgba(180, 40, 40, 0.1);
+            border: 1px solid rgba(180, 40, 40, 0.2);
+            border-radius: 6px;
+            padding: 12px 16px;
+            color: #ff6b6b;
+            font-size: 13px;
+            margin: 20px 0;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
 
         .btn {
             display: inline-block;
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 1px;
-            padding: 10px 22px;
+            padding: 11px 24px;
             border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-family: "Segoe UI", Arial, sans-serif;
             transition: all 0.2s;
-            background: #1a5fd4;
-            color: white;
         }
 
-        .btn:hover { background: #4a9eff; transform: translateY(-1px); }
+        .btn-danger { background: #b42828; color: white; flex: 1; }
+        .btn-danger:hover { background: #ff6b6b; }
+
+        .btn-secondary { background: transparent; border: 1px solid rgba(74, 158, 255, 0.2); color: #3a5a8a; }
+        .btn-secondary:hover { border-color: #4a9eff; color: #4a9eff; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">LA<span>BABA</span></div>
-    <a href="/accounts/home/" class="back-btn">← Back to Home</a>
+    <a href="/shop/" class="back-btn">← Back to Shop</a>
 </header>
 
 <div class="container">
-    <div class="page-tag">Account</div>
-    <h2>Edit Profile</h2>
-    <div class="sub">Update your personal information below.</div>
+    <div class="page-tag">Delete Record</div>
+    <h2>Delete Laundry Shop</h2>
+    <div class="sub">Please confirm the deletion below.</div>
 
     <div class="card">
-        <p>This is a sample edit profile page. Profile editing functionality can be added here.</p>
-        <a href="/accounts/home/" class="btn">← Back to Home</a>
+        <p>Shop ID: <span>{{ shop.shop_id }}</span></p>
+        <p>Shop Name: <span>{{ shop.shop_name }}</span></p>
+        <p>Address: <span>{{ shop.shop_address }}</span></p>
+        <p>Manager: <span>{{ shop.shop_manager }}</span></p>
+
+        <div class="warning">⚠️ This action cannot be undone. This shop will be permanently deleted.</div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-actions">
+                <a href="/shop/" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </div>
+        </form>
     </div>
 </div>
 
