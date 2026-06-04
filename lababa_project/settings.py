@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'lababa_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lababa_db',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -117,5 +121,5 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-LOGIN_REDIRECT_URL = '/customer/home/'
+LOGIN_REDIRECT_URL = '/customer/lababa-home/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'

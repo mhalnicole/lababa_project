@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Edit Profile</title>
 
     <style>
         *{
@@ -16,25 +16,32 @@
             display:flex;
             justify-content:center;
             align-items:center;
-            height:100vh;
+            min-height:100vh;
         }
 
-        .login-card{
+        .container{
+            width:500px;
             background:white;
-            width:400px;
-            padding:40px;
+            padding:35px;
             border-radius:15px;
             box-shadow:0 5px 20px rgba(0,0,0,0.1);
         }
 
         h1{
             text-align:center;
-            margin-bottom:25px;
             color:#333;
+            margin-bottom:25px;
         }
 
-        p{
-            margin-bottom:15px;
+        .profile-info{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:5px;
+            color:#555;
+            font-weight:bold;
         }
 
         input{
@@ -42,7 +49,7 @@
             padding:10px;
             border:1px solid #ddd;
             border-radius:8px;
-            margin-top:5px;
+            margin-bottom:15px;
         }
 
         button{
@@ -52,7 +59,6 @@
             border:none;
             padding:12px;
             border-radius:8px;
-            margin-top:15px;
             cursor:pointer;
             font-size:15px;
             font-weight:bold;
@@ -62,38 +68,42 @@
             background:#1d4ed8;
         }
 
-        .subtitle{
+        .back{
+            display:block;
             text-align:center;
-            color:#777;
-            margin-bottom:25px;
-        }
-
-        .errorlist{
-            color:red;
-            margin-bottom:10px;
-            list-style:none;
+            margin-top:15px;
+            text-decoration:none;
+            color:#666;
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-card">
+<div class="container">
 
-    <h1>LABABA SYSTEM LOGIN</h1>
+    <h1>Edit Profile</h1>
 
-    <div class="subtitle">
-        Login to continue
-    </div>
+    <form>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+        <label>Username</label>
+        <input type="text" value="{{ request.user.username }}" readonly>
 
-        <button type="submit">
-            Login
+        <label>Email</label>
+        <input type="email" placeholder="Enter email">
+
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter full name">
+
+        <button type="button">
+            Update Profile
         </button>
+
     </form>
+
+    <a href="/customer/home/" class="back">
+        ← Back to Home
+    </a>
 
 </div>
 

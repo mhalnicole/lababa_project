@@ -1,13 +1,210 @@
-<h1>Home Page</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Module</title>
 
-<ul>
-    <li><a href="/customer/addNewCustomer/">Add New Record</a></li>
-    <li><a href="/customer/edit-profile/">Edit Profile</a></li>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <li>
-        <form method="post" action="/accounts/logout/">
-            {% csrf_token %}
-            <button type="submit">Log Off</button>
-        </form>
-    </li>
-</ul>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Inter', sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .container{
+            width:900px;
+            background:white;
+            padding:50px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1{
+            text-align:center;
+            color:#1f2937;
+            margin-bottom:10px;
+            font-size:36px;
+            font-weight:700;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#6b7280;
+            margin-bottom:40px;
+            font-size:15px;
+        }
+
+        .menu{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+}
+
+        .card{
+            text-decoration:none;
+            background:white;
+            border:1px solid #e5e7eb;
+            border-radius:16px;
+            padding:30px;
+            text-align:center;
+            transition:all .25s ease;
+            color:#111827;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            border-color:#2563eb;
+            box-shadow:0 10px 20px rgba(37,99,235,0.12);
+        }
+
+        .icon{
+            font-size:38px;
+            margin-bottom:15px;
+        }
+
+        .card-title{
+            font-size:18px;
+            font-weight:600;
+            margin-bottom:8px;
+        }
+
+        .card-desc{
+            font-size:13px;
+            color:#6b7280;
+            line-height:1.5;
+        }
+
+        .bottom-actions{
+            margin-top:40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .dashboard-link{
+            text-decoration:none;
+            color:#9ca3af;
+            font-size:14px;
+            transition:.3s;
+        }
+
+        .dashboard-link:hover{
+            color:#6b7280;
+        }
+
+        .success-message{
+    background:#dcfce7;
+    color:#166534;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:600;
+    border:1px solid #bbf7d0;
+}
+
+        .logout button{
+            background:#ef4444;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:14px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .logout button:hover{
+            background:#dc2626;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="success-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+    <h1>Customer Module</h1>
+
+    <div class="subtitle">
+        Manage customer records and customer feedback ratings
+    </div>
+
+    <div class="menu">
+
+        <a href="/customer/addNewCustomer/" class="card">
+            <div class="icon">👤</div>
+            <div class="card-title">Add Customer</div>
+            <div class="card-desc">
+                Create and manage customer information records.
+            </div>
+        </a>
+
+        <a href="/customer/ratings/" class="card">
+            <div class="icon">⭐</div>
+            <div class="card-title">View Customer Ratings</div>
+            <div class="card-desc">
+                View customer ratings and feedback records.
+            </div>
+        </a>
+
+        <a href="/customer/manage-customers/" class="card">
+
+    <div class="icon">👥</div>
+
+    <div class="card-title">
+        Manage Customers
+    </div>
+
+    <div class="card-desc">
+        View, edit, and delete customer records.
+    </div>
+
+</a>
+
+
+
+    </div>
+
+    <div class="bottom-actions">
+
+        <a href="/customer/lababa-home/" class="dashboard-link">
+            ← Back to LABABA Dashboard
+        </a>
+
+        <div class="logout">
+            <form method="post" action="/accounts/logout/">
+                {% csrf_token %}
+                <button type="submit">
+                    Log Off
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

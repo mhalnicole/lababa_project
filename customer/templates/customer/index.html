@@ -1,4 +1,90 @@
-<h1>Customer Module</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Module</title>
 
-<a href="/customer/addNewCustomer/">Add Customer</a><br>
-<a href="/customer/addNewRating/">Add Rating</a>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .container{
+            background:white;
+            padding:40px;
+            width:450px;
+            border-radius:15px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+
+        h1{
+            color:#333;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            display:block;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:12px;
+            margin:12px 0;
+            border-radius:8px;
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .btn-secondary{
+            background:#6b7280;
+        }
+
+        .btn-secondary:hover{
+            background:#4b5563;
+        }
+
+        p{
+            color:#777;
+            margin-bottom:20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customer Module</h1>
+
+    <p>Customer and Rating Management System</p>
+
+    <a href="/customer/addNewCustomer/" class="btn">
+        Add New Customer
+    </a>
+
+    <a href="/customer/addNewRating/" class="btn">
+        Add New Rating
+    </a>
+
+    <a href="/customer/home/" class="btn btn-secondary">
+        Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

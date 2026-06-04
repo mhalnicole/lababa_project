@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer, Rating
+from .models import Customer
 
 
 class CustomerForm(forms.ModelForm):
@@ -8,7 +8,3 @@ class CustomerForm(forms.ModelForm):
         fields = '__all__'
 
 
-class RatingForm(forms.ModelForm):
-    class Meta:
-        model = Rating
-        fields = '__all__'

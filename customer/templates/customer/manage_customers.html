@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Customers</title>
+
+    <style>
+
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .container{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 5px 20px rgba(0,0,0,.1);
+        }
+
+        h1{
+            margin-bottom:20px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:left;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+        }
+
+        .edit{
+            background:#2563eb;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:6px;
+        }
+
+        .delete{
+            background:#ef4444;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:6px;
+        }
+
+        .back{
+            display:inline-block;
+            margin-top:20px;
+            color:#666;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Manage Customers</h1>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for customer in customers %}
+
+        <tr>
+
+            <td>{{ customer.id }}</td>
+
+            <td>{{ customer.full_name }}</td>
+
+            <td>{{ customer.email }}</td>
+
+            <td>{{ customer.phone }}</td>
+
+            <td>
+
+                <a href="/customer/edit-customer/{{ customer.id }}/"
+                   class="edit">
+                    Edit
+                </a>
+
+                <a href="/customer/delete-customer/{{ customer.id }}/"
+                   class="delete"
+                   onclick="return confirm('Delete this customer?')">
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <a href="/customer/home/" class="back">
+        ← Back to Customer Module
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Registration</title>
+    <title>View Customer Ratings</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -25,8 +26,8 @@
         }
 
         .container{
+            width:900px;
             background:white;
-            width:650px;
             padding:40px;
             border-radius:18px;
             box-shadow:0 10px 25px rgba(0,0,0,0.08);
@@ -36,51 +37,33 @@
             text-align:center;
             color:#1f2937;
             margin-bottom:10px;
-            font-size:34px;
         }
 
         .subtitle{
             text-align:center;
             color:#6b7280;
             margin-bottom:30px;
-            font-size:14px;
         }
 
-        form p{
-            margin-bottom:18px;
-        }
-
-        label{
-            font-weight:600;
-            color:#374151;
-        }
-
-        input,
-        select,
-        textarea{
+        table{
             width:100%;
-            padding:12px;
-            margin-top:6px;
-            border:1px solid #d1d5db;
-            border-radius:10px;
-            font-size:14px;
+            border-collapse:collapse;
         }
 
-        button{
-            width:100%;
+        th{
             background:#2563eb;
             color:white;
-            border:none;
             padding:14px;
-            border-radius:10px;
-            cursor:pointer;
-            font-size:15px;
-            font-weight:600;
-            margin-top:10px;
+            text-align:left;
         }
 
-        button:hover{
-            background:#1d4ed8;
+        td{
+            padding:14px;
+            border-bottom:1px solid #e5e7eb;
+        }
+
+        tr:hover{
+            background:#f9fafb;
         }
 
         .links{
@@ -92,12 +75,12 @@
         .link{
             text-decoration:none;
             color:#9ca3af;
-            font-size:14px;
         }
 
         .link:hover{
             color:#6b7280;
         }
+
     </style>
 </head>
 
@@ -105,20 +88,24 @@
 
 <div class="container">
 
-    <h1>Customer Registration</h1>
+    <h1>Customer Ratings</h1>
+    <table>
 
-    <div class="subtitle">
-        Register a new customer into the system.
-    </div>
+        <tr>
+            <th>Customer Name</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+        </tr>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+        {% for rating in ratings %}
+        <tr>
+            <td>{{ rating.customer }}</td>
+            <td>{{ rating.score }}/5</td>
+            <td>{{ rating.feedback }}</td>
+        </tr>
+        {% endfor %}
 
-        <button type="submit">
-            Save Customer
-        </button>
-    </form>
+    </table>
 
     <div class="links">
 
