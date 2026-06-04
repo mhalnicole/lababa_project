@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order List</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .top-buttons {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #f3f3f3;
+            color: #333;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            padding: 30px;
+        }
+
+        .view-link {
+            color: #5b86e5;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Order List</h1>
+
+    <div class="top-buttons">
+        <a href="{% url 'create_order' %}" class="btn add-btn">Add New Order</a>
+        <a href="{% url 'order_home' %}" class="btn back-btn">Back to Order Menu</a>
+    </div>
+
+    {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Laundry Shop</th>
+                    <th>Service Type</th>
+                    <th>Laundry Type</th>
+                    <th>Weight</th>
+                    <th>Total Amount</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Pickup Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>{{ order.laundry_shop }}</td>
+                        <td>{{ order.service_type }}</td>
+                        <td>{{ order.laundry_type }}</td>
+                        <td>{{ order.weight_in_kilos }} kg</td>
+                        <td>₱{{ order.total_amount }}</td>
+                        <td>{{ order.payment_method }}</td>
+                        <td><span class="status">{{ order.order_status }}</span></td>
+                        <td>{{ order.pickup_date }}</td>
+                        <td>
+                            <a href="{% url 'order_detail' order.id %}" class="view-link">View</a>
+                            <a href="{% url 'edit_order' order.id %}" class="view-link">Edit</a>
+                            <a href="{% url 'delete_order' order.id %}" class="view-link">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-message">
+            <h3>No orders yet.</h3>
+            <p>Click “Add New Order” to create your first order.</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,17 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Order Menu</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-card {
+            background: white;
+            width: 420px;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .menu-card h1 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 32px;
+        }
+
+        .menu-card p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .menu-button {
+            display: block;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+
+        .menu-button button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        }
+
+        .menu-button button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Welcome to Laundry Order System</h1>
+<div class="menu-card">
+    <div class="icon"></div>
 
-<p>Click below to create a new order:</p>
+    <h1>Order Menu</h1>
 
-<a href="{% url 'create_order' %}">
-    <button>Create Order</button>
-</a>
+    <p>Welcome! Please choose what you would like to do next.</p>
+
+    <a href="{% url 'edit_profile' %}" class="menu-button">
+        <button class="edit-btn"> Edit Profile</button>
+    </a>
+
+    <a href="{% url 'create_order' %}" class="menu-button">
+        <button class="add-btn">Add New Record</button>
+    </a>
+    <a href="{% url 'order_list' %}" class="menu-button">
+    <button class="edit-btn">View Orders</button>
+    </a>
+
+    <a href="{% url 'logout_user' %}" class="menu-button">
+        <button class="logout-btn">Log off</button>
+    </a>
+
+    <div class="footer-text">
+        Laundry Order System
+    </div>
+</div>
 
 </body>
 </html>

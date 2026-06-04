@@ -2,10 +2,96 @@
 <html>
 <head>
     <title>Success</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-card {
+            background: white;
+            width: 430px;
+            padding: 40px 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .success-card h2 {
+            margin: 0;
+            color: #333;
+            font-size: 28px;
+        }
+
+        .success-card p {
+            color: #666;
+            margin: 15px 0 30px;
+            font-size: 16px;
+        }
+
+        .button-row {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .menu-btn,
+        .add-btn {
+            display: block;
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        .menu-btn:hover,
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+    </style>
 </head>
 <body>
 
-<h2>Order Submitted Successfully!</h2>
+<div class="success-card">
+    <div class="success-icon"></div>
+
+    <h2>Order Submitted Successfully!</h2>
+
+    <p>Your order record has been saved.</p>
+
+    <div class="button-row">
+        <a href="{% url 'order_home' %}" class="menu-btn">
+            Back to Main Navigation
+        </a>
+
+        <a href="{% url 'create_order' %}" class="add-btn">
+            Add Another Order
+        </a>
+    </div>
+</div>
 
 </body>
 </html>
