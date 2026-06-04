@@ -5,9 +5,9 @@ from django.db import models
 
 class LaundryShop(models.Model):
     shop_id = models.CharField(max_length=20, primary_key=True)
-    shop_name = models.CharField(max_length=100)
+    shop_name = models.CharField(max_length=100, unique=True)
     shop_address = models.CharField(max_length=255)
-    contact_number = models.CharField(max_length=20)
+    contact_number = models.CharField(max_length=20, unique=True)
     shop_manager = models.CharField(max_length=100)
 
     def __str__(self):
