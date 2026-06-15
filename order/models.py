@@ -1,21 +1,13 @@
 from django.db import models
 import uuid
 
-class Order(models.Model):
-    SERVICE_CHOICES = [
-        ('Wash Only', 'Wash Only'),
-        ('Wash & Dry', 'Wash & Dry'),
-        ('Wash, Dry & Fold', 'Wash, Dry & Fold'),
-        ('Dry Cleaning', 'Dry Cleaning'),
-    ]
+from customer.models import Customer
+from shop.models import LaundryShop, Service, LaundryType
 
-    LAUNDRY_CHOICES = [
-        ('Regular Clothes', 'Regular Clothes'),
-        ('Bedsheets', 'Bedsheets'),
-        ('Blankets', 'Blankets'),
-        ('Curtains', 'Curtains'),
-        ('Delicates', 'Delicates'),
-    ]
+class Order(models.Model):
+
+
+
 
     PAYMENT_CHOICES = [
         ('Cash', 'Cash'),
@@ -34,10 +26,34 @@ class Order(models.Model):
         ('Cancelled', 'Cancelled'),
     ]
 
+    customer = models.ForeignKey(
+        'customer.Customer',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
+    laundry_shop = models.ForeignKey(
+        'shop.LaundryShop',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
+    service = models.ForeignKey(
+        'shop.Service',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
+    laundry_type = models.ForeignKey(
+        'shop.LaundryType',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     order_id = models.CharField(max_length=20, unique=True, editable=False)
-    customer_name = models.CharField(max_length=100)
-    service_type = models.CharField(max_length=50, choices=SERVICE_CHOICES)
-    laundry_type = models.CharField(max_length=50, choices=LAUNDRY_CHOICES)
     weight_in_kilos = models.DecimalField(max_digits=5, decimal_places=2)
     promo_code = models.CharField(max_length=20, blank=True, null=True)
     pickup_date = models.DateField()
@@ -47,16 +63,8 @@ class Order(models.Model):
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
     order_status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True, null= True)
-    LAUNDRY_SHOP_CHOICES = [
-        ('Clean Wash Laundry', 'Clean Wash Laundry'),
-        ('Fresh Fold Laundry', 'Fresh Fold Laundry'),
-        ('LABABA Laundry Shop', 'LABABA Laundry Shop'),
-    ]
 
-    laundry_shop = models.CharField(
-        max_length=100,
-        choices=LAUNDRY_SHOP_CHOICES
-    )
+
 
 
 
@@ -77,4 +85,4 @@ class Order(models.Model):
         super(Order, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.order_id} - {self.customer_name}"
+        return f"{self.order_id} - {self.customer.full_name}"
